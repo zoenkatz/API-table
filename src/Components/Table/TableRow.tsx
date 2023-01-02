@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { INodeAPIDataExtended } from "../../Assets/types";
 import ToggleButton from "../ToggleButton";
-import Tag from "../Tag";
 import AppContext from "../../AppContext";
 
 const TableRow = ({
