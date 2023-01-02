@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect, useReducer, useRef } from "react";
+import APIdata from "./Assets/api-data.json";
+import "./App.scss";
+import AppContext from "./AppContext";
+import AppReducer from "./AppReducer";
+import Header from "./Components/Header";
+import Tabs from "./Components/Tabs/Tabs";
+import Filters from "./Components/Filters/Filters";
+import Table from "./Components/Table/Table";
 
 function App() {
+  const initialState = useContext(AppContext);
+  const [state, dispatch] = useReducer(AppReducer, initialState, undefined);
+  const didMount = useRef(false);
+
+  useEffect(() => {
+    if (didMount.current) {
+      dispatch({ type: "SET_APP_DATA", payload: { appData: APIdata } });
+    }
+
+    return () => {
+      didMount.current = true;
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={{ ...state, dispatch }}>
+      <div className="App">
+        <Header />
+        <Tabs
+          tabs={["request", "response"]}
+        />
+        <div className="app-filters-table">
+        <Filters />
+        <Table />
+        </div>
+      </div>
+    </AppContext.Provider>
   );
 }
 
