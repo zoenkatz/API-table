@@ -13,7 +13,7 @@ const Filters = () => {
       type: "SET_FILTERS",
       payload: { filters: { query, isPIIOnly } },
     });
-  }, [isPIIOnly, query]);
+  }, [isPIIOnly, query, dispatch]);
 
   const clearFilters = () => {
     setQuery("");
@@ -36,13 +36,19 @@ const Filters = () => {
           label="Show PII Only"
           onChange={() => setIsPIIOnly(!isPIIOnly)}
         />
-        <Button isDisabled={false} value="Apply" onClick={applyFilters} className="apply"/>
+        <Button
+          isDisabled={false}
+          value="Apply"
+          onClick={applyFilters}
+          className="apply"
+        />
       </div>
       <div className="filters-clear">
         <Button
           isDisabled={filters.query === "" && !filters.isPIIOnly}
           value="Reset Filters"
-          onClick={clearFilters} className="reset"
+          onClick={clearFilters}
+          className="reset"
         />
       </div>
     </div>

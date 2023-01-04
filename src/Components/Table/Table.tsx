@@ -28,10 +28,11 @@ const Table = () => {
       </thead>
       {tableData &&
         Object.keys(sectionMapping).map((sectionKey, index) => {
-          return tableData[sectionMapping[sectionKey]]?.length ? (
+          const sectionData = tableData[sectionMapping[sectionKey]];
+          return sectionData?.length ? (
             <TableSection
               key={index}
-              sectionData={tableData[sectionMapping[sectionKey]]}
+              sectionData={sectionData}
               sectionKey={sectionKey}
             />
           ) : null;

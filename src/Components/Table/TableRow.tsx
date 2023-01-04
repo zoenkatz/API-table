@@ -9,7 +9,6 @@ const TableRow = ({
   pii,
   type,
   sectionKey,
-  index,
 }: INodeAPIDataExtended) => {
   const { dispatch, selectedTab } = useContext(AppContext);
   const handleToggle = (value: boolean, prop: string) => {
@@ -40,11 +39,12 @@ const TableRow = ({
         />
       </td>
       <td>
-          <ToggleButton isDisabled={true}
-              isPressed={true}
-              value={type}
-              className="type"
-          />
+        <ToggleButton
+          isDisabled={true}
+          isPressed={true}
+          value={type}
+          className="type"
+        />
       </td>
     </tr>
   );
