@@ -33,7 +33,7 @@ const Table = () => {
             <TableSection
               key={index}
               sectionData={sectionData}
-              sectionKey={sectionKey}
+              sectionKey={sectionMapping[sectionKey]}
             />
           ) : null;
         })}
